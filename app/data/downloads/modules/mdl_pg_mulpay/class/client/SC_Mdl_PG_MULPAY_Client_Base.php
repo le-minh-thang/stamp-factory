@@ -17,6 +17,9 @@ class SC_Mdl_PG_MULPAY_Client_Base {
         $arrSendData = array();
         foreach ($arrSendKey as $key) {
             switch ($key) {
+                case 'Token':
+                    $arrSendData[$key] = $_REQUEST[strtolower($key)];
+                    break;
             case 'ShopID':
             case 'ShopPass':
                 $arrSendData[$key] = $arrMdlSetting[$key];

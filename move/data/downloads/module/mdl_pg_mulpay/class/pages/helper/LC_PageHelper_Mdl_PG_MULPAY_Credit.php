@@ -32,18 +32,18 @@ class LC_PageHelper_Mdl_PG_MULPAY_Credit extends LC_PageHelper_Mdl_PG_MULPAY_Bas
      * @return void
      */
     function initParam(&$objFormParam, &$arrPaymentInfo, &$arrOrder) {
-        $objFormParam->addParam("カード番号", "CardNo", 16, 'n', array("EXIST_CHECK", "MAX_LENGTH_CHECK", "NUM_CHECK"));
-        $objFormParam->addParam("カード有効期限年", "Expire_year", 2, 'n', array("EXIST_CHECK", "MAX_LENGTH_CHECK", "NUM_CHECK"));
-        $objFormParam->addParam("カード有効期限月", "Expire_month", 2, 'n', array("EXIST_CHECK", "MAX_LENGTH_CHECK", "NUM_CHECK"));
-        $objFormParam->addParam("カード名義:名", "card_name1", 25, 'a', array("EXIST_CHECK", "MAX_LENGTH_CHECK", "ALNUM_CHECK"), "");
-        $objFormParam->addParam("カード名義:姓", "card_name2", 24, 'a', array("EXIST_CHECK", "MAX_LENGTH_CHECK", "ALNUM_CHECK"), "");
-        if($arrPaymentInfo['use_securitycd']) {
-            if ($arrPaymentInfo['use_securitycd_option']) {
-                $objFormParam->addParam("セキュリティコード", "SecurityCode", 4, 'n', array("MAX_LENGTH_CHECK", "NUM_CHECK"), "");
-            } else {
-                $objFormParam->addParam("セキュリティコード", "SecurityCode", 4, 'n', array("EXIST_CHECK", "MAX_LENGTH_CHECK", "NUM_CHECK"), "");
-            }
-        }
+//        $objFormParam->addParam("カード番号", "CardNo", 16, 'n', array("EXIST_CHECK", "MAX_LENGTH_CHECK", "NUM_CHECK"));
+//        $objFormParam->addParam("カード有効期限年", "Expire_year", 2, 'n', array("EXIST_CHECK", "MAX_LENGTH_CHECK", "NUM_CHECK"));
+//        $objFormParam->addParam("カード有効期限月", "Expire_month", 2, 'n', array("EXIST_CHECK", "MAX_LENGTH_CHECK", "NUM_CHECK"));
+//        $objFormParam->addParam("カード名義:名", "card_name1", 25, 'a', array("EXIST_CHECK", "MAX_LENGTH_CHECK", "ALNUM_CHECK"), "");
+//        $objFormParam->addParam("カード名義:姓", "card_name2", 24, 'a', array("EXIST_CHECK", "MAX_LENGTH_CHECK", "ALNUM_CHECK"), "");
+//        if($arrPaymentInfo['use_securitycd']) {
+//            if ($arrPaymentInfo['use_securitycd_option']) {
+//                $objFormParam->addParam("セキュリティコード", "SecurityCode", 4, 'n', array("MAX_LENGTH_CHECK", "NUM_CHECK"), "");
+//            } else {
+//                $objFormParam->addParam("セキュリティコード", "SecurityCode", 4, 'n', array("EXIST_CHECK", "MAX_LENGTH_CHECK", "NUM_CHECK"), "");
+//            }
+//        }
 
         $objFormParam->addParam("お支払い方法", "Method", INT_LEN, 'n', array("MAX_LENGTH_CHECK", "GRAPH_CHECK"), "");
 
@@ -65,19 +65,19 @@ class LC_PageHelper_Mdl_PG_MULPAY_Credit extends LC_PageHelper_Mdl_PG_MULPAY_Bas
         $objErr = new SC_CheckError_Ex($arrParam);
         $objErr->arrErr = $objFormParam->checkError();
 
-        if (SC_Utils_Ex::isBlank($objErr->arrErr)) {
-            if (strlen($arrParam['CardNo']) < 10 || strlen($arrParam['CardNo']) > 16) {
-                $objErr->arrErr['CardNo'] = '※ カード番号の桁数が足りません。<br />';
-            }
-            if (!SC_Utils_Ex::isBlank($arrParam['SecurityCode']) &&
-                (strlen($arrParam['SecurityCode']) < 3 || strlen($arrParam['SecurityCode']) > 4)) {
-                $objErr->arrErr['SecurityCode'] = '※ セキュリティコードの桁数が足りません。<br />';
-            }
-
-            if (strtotime('-1 month') > strtotime('20' . $arrParam['Expire_year'] . '/' . $arrParam['Expire_month'] . '/1')) {
-                $objErr->arrErr['Expire_year'] = '※ 有効期限が過ぎたカードは利用出来ません。<br />';
-            }
-        }
+//        if (SC_Utils_Ex::isBlank($objErr->arrErr)) {
+//            if (strlen($arrParam['CardNo']) < 10 || strlen($arrParam['CardNo']) > 16) {
+//                $objErr->arrErr['CardNo'] = '※ カード番号の桁数が足りません。<br />';
+//            }
+//            if (!SC_Utils_Ex::isBlank($arrParam['SecurityCode']) &&
+//                (strlen($arrParam['SecurityCode']) < 3 || strlen($arrParam['SecurityCode']) > 4)) {
+//                $objErr->arrErr['SecurityCode'] = '※ セキュリティコードの桁数が足りません。<br />';
+//            }
+//
+//            if (strtotime('-1 month') > strtotime('20' . $arrParam['Expire_year'] . '/' . $arrParam['Expire_month'] . '/1')) {
+//                $objErr->arrErr['Expire_year'] = '※ 有効期限が過ぎたカードは利用出来ません。<br />';
+//            }
+//        }
         return $objErr->arrErr;
     }
 

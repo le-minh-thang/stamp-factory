@@ -3,25 +3,12 @@
  * http://www.gmo-pg.com/
  * Updated: 2013/06/19
  *}-->
+<script src="https://pt01.mul-pay.jp/ext/js/token.js"></script>
+<script src="<!--{$smarty.const.ROOT_URLPATH}-->js/payment.js"></script>
 <script type="text/javascript">//<![CDATA[
-var send = true;
-
-function fnCheckSubmit(mode) {
-    $('#payment_form_body').slideToggle();
-    $('#payment_form_loading').slideToggle();
-
-    if(send) {
-        send = false;
-        fnModeSubmit(mode,'','');
-        return false;
-    } else {
-        alert("只今、処理中です。しばらくお待ち下さい。");
-        return false;
-    }
-}
-$(function() {
-            <!--{$tpl_payment_onload}-->
-});
+    $(function() {
+                <!--{$tpl_payment_onload}-->
+    });
 //]]>
 </script>
         <!--{if $tpl_is_td_tran}-->
@@ -43,7 +30,7 @@ $(function() {
         <input type="hidden" name="TermUrl" value="<!--{$arrTdData.TermUrl}-->" />
         <input type="hidden" name="MD" value="<!--{$arrTdData.MD}-->" />
         <!--{/if}-->
-
+        <input type="hidden" name="token" value="" id="token"/>
         <div id="payment_form_loading" style="<!--{if !$tpl_is_loding}-->display:none;<!--{/if}-->">
             <div class="information">
                 <p>決済処理中です。しばらくお待ち下さい。</p>

@@ -3,7 +3,7 @@
  * http://www.gmo-pg.com/
  * Updated: 2013/03/29
  *}-->
-<script src="https://pt01.mul-pay.jp/ext/js/token.js"></script>
+<script src="https://p01.mul-pay.jp/ext/js/token.js"></script>
 <script type="text/javascript">//<![CDATA[
     var send = true;
     Multipayment.init('tshopid')
